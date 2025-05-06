@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kill the Cockroach - PWA Game</title>
+  <link rel="manifest" href="manifest.json" />
+  <link rel="stylesheet" href="style.css" />
+  <meta name="theme-color" content="#4CAF50" />
+</head>
+<body>
+  <div id="game-container">
+    <header>
+      <h1>Kill the Cockroach</h1>
+      <div id="status">
+        <span id="timer">Time: 0s</span>
+        <span id="kill-count">Killed: 0</span>
+        <button id="mute-btn" aria-label="Mute/Unmute Audio">🔊</button>
+        <span id="connection-status"></span>
+      </div>
+    </header>
+    <main>
+      <div id="game-area"></div>
+    </main>
+  </div>
+
+  <div id="start-popup" class="popup">
+    <div class="popup-content">
+      <h2>Welcome to Kill the Cockroach!</h2>
+      <p>Are you ready to start the game?</p>
+      <button id="start-game-btn">Start Game</button>
+    </div>
+  </div>
+
+  <div id="gameover-popup" class="hidden">
+    <div class="popup-content">
+      <p id="gameover-message">Game Over! You killed <span id="total-kills">0</span> cockroaches.</p>
+      <button id="play-again-btn">Play Again</button>
+    </div>
+  </div>
+
+  <audio id="bg-music" loop src="audio/background-music.mp3"></audio>
+  <audio id="kill-sound" src="audio/kill-sound.mp3"></audio>
+
+  <script src="app.js"></script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('service-worker.js').catch(function(error) {
+        console.error('Service Worker registration failed:', error);
+      });
+    }
+  </script>
+</body>
+</html>
